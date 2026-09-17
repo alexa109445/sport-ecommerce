@@ -1,0 +1,22 @@
+.nav-link-custom {
+  color: #ffffff !important;
+  transition: color 0.3s ease;
+}
+
+.nav-link-custom:hover {
+  color: #00d2d3 !important;
+}
+
+.carrello-contenitore {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.carrello-contenitore:hover {
+  transform: scale(1.1);
+}
+
+.badge-carrello {
+  font-size: 11px;
+  padding: 4px 6px;
+}
