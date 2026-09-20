@@ -3,12 +3,6 @@ import '../style/Header.css';
 
 function Header() {
     const [testoRicerca, setTestoRicerca] = useState('');
-
-    const gestisciRicerca = (evento) => {
-        evento.preventDefault();
-        alert('Stai cercando il prodotto: ' + testoRicerca);
-    };
-
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 shadow-sm">
             <div className="container-fluid">
@@ -39,7 +33,7 @@ function Header() {
                             </a>
                         </li>
                     </ul>
-                    <form className="d-flex me-4" onSubmit={gestisciRicerca}>
+                    <form className="d-flex me-4">
                         <input
                             className="form-control me-2"
                             type="search"
