@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import '../style/Header.css';
 
-function Header({ quantitaCarrello }) {
+function Header({ quantitaCarrello, onApriCarrello }) {
     const [testoRicerca, setTestoRicerca] = useState('');
+    
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 shadow-sm">
             <div className="container-fluid">
@@ -39,7 +40,9 @@ function Header({ quantitaCarrello }) {
                             type="search"
                             placeholder="Cerca un prodotto..."
                             value={testoRicerca}
-                            onChange={(evento) => setTestoRicerca(evento.target.value)}
+                            onChange={function (evento) {
+                                setTestoRicerca(evento.target.value);
+                            }}
                         />
                         <button className="btn btn-outline-info" type="submit">
                             Cerca
@@ -50,15 +53,20 @@ function Header({ quantitaCarrello }) {
                             Accedi
                         </button>
 
-                        <div className="position-relative text-white fs-4 carrello-contenitore">
+                        <div 
+                            className="position-relative text-white fs-4 carrello-contenitore"
+                            style={{ cursor: "pointer" }}
+                            onClick={onApriCarrello}
+                        >
                             🛒
-                            <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger badge-carrello">
-                                {quantitaCarrello}
-                            </span>
+                            {quantitaCarrello > 0 ? (
+                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger badge-carrello">
+                                    {quantitaCarrello}
+                                </span>
+                            ) : null}
                         </div>
                     </div>
                 </div>
-
             </div>
         </nav>
     );
