@@ -1,4 +1,8 @@
-function GrigliaProdotti() {
+import "../style/grigliaProdotti.css";
+import React, { useState, useEffect } from 'react';
+
+
+function GrigliaProdotti({ onAggiungiAlCarrello }) {
   const [listaProdotti, setListaProdotti] = useState([]);
   const [categoriaSelezionata, setCategoriaSelezionata] = useState('Tutti');
   const [caricamentoInCorso, setCaricamentoInCorso] = useState(true);
@@ -41,7 +45,7 @@ function GrigliaProdotti() {
   if (messaggioErrore !== null) {
     return (
       <div className="alert alert-danger text-center my-5 container" role="alert">
-        Si è verificato un errore: {messaggioErrore}. Assicurati che Spring Boot sia avviato!
+        Si è verificato un errore: {messaggioErrore}. Collega Spring Boot.
       </div>
     );
   }
@@ -90,7 +94,9 @@ function GrigliaProdotti() {
                       <p className="card-text fs-4 fw-bold text-dark mt-auto mb-3">
                         €{prodottoSingolo.prezzo.toFixed(2)}
                       </p>
-                      <button className="btn btn-dark w-100 fw-semibold">
+                      <button className="btn btn-dark w-100 fw-semibold" onClick={function () {
+                        onAggiungiAlCarrello(prodottoSingolo);
+                      }}>
                         Aggiungi al Carrello
                       </button>
                     </div>
@@ -108,3 +114,5 @@ function GrigliaProdotti() {
     </section>
   );
 }
+
+export default GrigliaProdotti;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../style/Header.css';
 
-function Header() {
+function Header({ quantitaCarrello }) {
     const [testoRicerca, setTestoRicerca] = useState('');
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 shadow-sm">
@@ -53,7 +53,7 @@ function Header() {
                         <div className="position-relative text-white fs-4 carrello-contenitore">
                             🛒
                             <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger badge-carrello">
-                                0
+                                {quantitaCarrello}
                             </span>
                         </div>
                     </div>

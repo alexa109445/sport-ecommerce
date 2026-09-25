@@ -12,4 +12,6 @@
 .prodotto-immagine {
   height: 260px;
   object-fit: cover;
+  hoover: 13;
 }
+
