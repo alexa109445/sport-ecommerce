@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CarrelloModal({ mostra, onChiudi, carrello, onAggiungi, onRimuovi }) {
+function CarrelloModal({ mostra, onChiudi, carrello, onAggiungi, onRimuovi, onProcediAlCheckout }) {
   if (mostra === false) {
     return null;
   }
@@ -97,6 +97,7 @@ function CarrelloModal({ mostra, onChiudi, carrello, onAggiungi, onRimuovi }) {
                 type="button" 
                 className="btn btn-dark btn-lg" 
                 disabled={carrello.length === 0}
+                onClick={onProcediAlCheckout}
               >
                 Procedi al Checkout
               </button>

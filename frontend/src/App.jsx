@@ -5,10 +5,12 @@ import Hero from './components/Hero.jsx';
 import GrigliaProdotti from './components/grigliaProdotti.jsx';
 import Footer from './components/Footer.jsx';
 import CarrelloModal from './components/CarrelloModal.jsx';
+import Checkout from './components/Checkout.jsx';
 
 function App() {
   const [carrello, setCarrello] = useState([]);
   const [mostraModalCarrello, setMostraModalCarrello] = useState(false);
+  const [vistaCorrente, setVistaCorrente] = useState('catalogo');
 
   const aggiungiAlCarrello = function (prodottoDaAggiungere) {
     setCarrello(function (carrelloAttuale) {
@@ -68,14 +70,42 @@ function App() {
     setMostraModalCarrello(false);
   };
 
+  const passaAlCheckout = function () {
+    setMostraModalCarrello(false);
+    setVistaCorrente('checkout');
+  };
+
+  const tornaAlCatalogo = function () {
+    setVistaCorrente('catalogo');
+  };
+
+  const inviaOrdineAlBackend = function (datiSpedizione) {
+    console.log("Dati ordine pronti per l'invio:", datiSpedizione, carrello);
+    alert('Ordine inviato con successo!');
+    setCarrello([]);
+    setVistaCorrente('catalogo');
+  };
+
   return (
     <div>
       <Header 
         quantitaCarrello={numeroTotaleArticoli} 
         onApriCarrello={apriModalCarrello} 
       />
-      <Hero />
-      <GrigliaProdotti onAggiungiAlCarrello={aggiungiAlCarrello} />
+
+      {vistaCorrente === 'catalogo' ? (
+        <div>
+          <Hero />
+          <GrigliaProdotti onAggiungiAlCarrello={aggiungiAlCarrello} />
+        </div>
+      ) : (
+        <Checkout 
+          carrello={carrello} 
+          onTornaAlCatalogo={tornaAlCatalogo} 
+          onConfermaOrdine={inviaOrdineAlBackend} 
+        />
+      )}
+
       <Footer />
 
       <CarrelloModal 
@@ -84,6 +114,7 @@ function App() {
         carrello={carrello} 
         onAggiungi={aggiungiAlCarrello} 
         onRimuovi={rimuoviDalCarrello} 
+        onProcediAlCheckout={passaAlCheckout}
       />
     </div>
   );
